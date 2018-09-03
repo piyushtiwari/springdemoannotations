@@ -3,7 +3,11 @@ package com.piyush.springdemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Component
 public class TennisCoach implements Coach {
@@ -35,5 +39,15 @@ public class TennisCoach implements Coach {
 
     public String getDailyFortune() {
         return fortuneService.getFortune();
+    }
+
+    @PostConstruct
+    private void postConstructMethodFoo() {
+        System.out.println("Post Construct Called");
+    }
+
+    @PreDestroy
+    private void preDestroyMethodBar() {
+        System.out.println("Pre Destroy called");
     }
 }
